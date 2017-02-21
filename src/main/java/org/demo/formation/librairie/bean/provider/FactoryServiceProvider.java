@@ -11,9 +11,9 @@ package org.demo.formation.librairie.bean.provider;
  * @author Telosys
  *
  */
-public class PersistenceServiceProvider {
+public class FactoryServiceProvider {
 
-	private final static ImplementationProvider provider = new ImplementationProvider();
+	private final static ImplementationServiceProvider provider = new ImplementationServiceProvider();
 	
 	/**
 	 * Returns the persistence service implementing the given interface

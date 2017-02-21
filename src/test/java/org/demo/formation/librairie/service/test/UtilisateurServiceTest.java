@@ -2,7 +2,7 @@ package org.demo.formation.librairie.service.test;
 
 import java.util.List;
 
-import org.demo.formation.librairie.bean.provider.PersistenceServiceProvider;
+import org.demo.formation.librairie.bean.provider.FactoryServiceProvider;
 import org.demo.formation.librairie.entity.Utilisateur;
 import org.demo.formation.librairie.service.IUtilisateurService;
 import org.demo.formation.librairie.service.impl.UtilisateurServiceImpl;
@@ -14,7 +14,7 @@ public class UtilisateurServiceTest {
 
 	
 	
-	private IUtilisateurService userService = PersistenceServiceProvider.getService(UtilisateurServiceImpl.class);
+	private IUtilisateurService userService = FactoryServiceProvider.getService(UtilisateurServiceImpl.class);
 	
 	@Test
 	public void testGetAllUser(){

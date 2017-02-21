@@ -15,7 +15,7 @@ import org.apache.commons.lang.StringUtils;
  * @author Telosys
  *
  */
-public class ImplementationProvider {
+public class ImplementationServiceProvider {
 
 	private final String pattern;
 
@@ -31,12 +31,12 @@ public class ImplementationProvider {
 	 *            the second "%s" will be replaced by the interface simple class
 	 *            name <br>
 	 */
-	public ImplementationProvider(String pattern) {
+	public ImplementationServiceProvider(String pattern) {
 		super();
 		this.pattern = pattern;
 	}
 	
-	public ImplementationProvider() {
+	public ImplementationServiceProvider() {
 		this("");
 	}
 
@@ -50,7 +50,7 @@ public class ImplementationProvider {
 
 		String serviceImplementationClassName = buildImplementationClassName(interfaceClass);
 		try {
-			Class<?> serviceImplementationClass = ImplementationProvider.class.getClassLoader()
+			Class<?> serviceImplementationClass = ImplementationServiceProvider.class.getClassLoader()
 					.loadClass(serviceImplementationClassName);
 			return createServiceInstance(interfaceClass, serviceImplementationClass);
 		} catch (ClassNotFoundException e) {

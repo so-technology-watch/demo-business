@@ -1,0 +1,16 @@
+org\demo\formation\librairie\dao\impl\AbstractEntityImpl.class
+org\demo\formation\librairie\util\DepartementEnum.class
+org\demo\formation\librairie\service\IAbstractService.class
+org\demo\formation\librairie\util\PersistenceSingleton.class
+org\demo\formation\librairie\dao\impl\UtilisateurDAOImpl.class
+org\demo\formation\librairie\exception\DemoBusinessException.class
+org\demo\formation\librairie\entity\Utilisateur.class
+org\demo\formation\librairie\dao\IUtilisateurDAO.class
+org\demo\formation\librairie\dao\IAbstractEntityDAO.class
+org\demo\formation\librairie\service\impl\UtilisateurServiceImpl.class
+org\demo\formation\librairie\bean\provider\ImplementationServiceProvider.class
+org\demo\formation\librairie\service\impl\AbstractServiceImpl.class
+org\demo\formation\librairie\service\IUtilisateurService.class
+org\demo\formation\librairie\entity\common\IEntity.class
+org\demo\formation\librairie\bean\provider\BeanServiceProvider.class
+org\demo\formation\librairie\util\GenreEnum.class
