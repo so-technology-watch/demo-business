@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import org.demo.formation.librairie.entity.common.IEntity;
 
-public  class PersistenceSingleton {
+public  class PersistenceSingleton<TypeID> {
 
 	private static boolean isStoreInit = false;
 	public static String FILE_DATA_STORE = System.getProperty("java.io.tmpdir") + "/database.map";
@@ -32,6 +32,7 @@ public  class PersistenceSingleton {
 	private PersistenceSingleton() {
 		try
 		{
+			//Juste pour initialiser quelques enregistrements en mémoires
 			FileOutputStream fos =	new FileOutputStream(FILE_DATA_STORE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.close();
@@ -46,7 +47,7 @@ public  class PersistenceSingleton {
 	/** L'instance statique */
 	private static PersistenceSingleton INSTANCE = null;
 
-	public  void setStoreData(HashMap<String, IEntity> mapEntity){
+	public <TypeID> void setStoreData(HashMap<String, IEntity<TypeID>> mapEntity){
 		try	{
 			FileOutputStream fos =	new FileOutputStream(FILE_DATA_STORE);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -60,16 +61,15 @@ public  class PersistenceSingleton {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	public  HashMap<String, IEntity>  getStoreData(){
-		HashMap<String, IEntity> mapToReturn = new HashMap<String, IEntity>();
+	public <TypeID> HashMap<String, IEntity<TypeID>>  getStoreData(){ 
+		HashMap<String, IEntity<TypeID>> mapToReturn = new HashMap<String, IEntity<TypeID>>();
 		try
 		{
 			FileInputStream fis = new FileInputStream(FILE_DATA_STORE);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			mapToReturn = (HashMap<String, IEntity>) ois.readObject();
+			mapToReturn = (HashMap<String, IEntity<TypeID>>) ois.readObject();
 			if (mapToReturn == null){
-				 mapToReturn = new HashMap<String,IEntity>();
+				 mapToReturn = new HashMap<String,IEntity<TypeID>>();
 			}
 			ois.close();
 			fis.close();

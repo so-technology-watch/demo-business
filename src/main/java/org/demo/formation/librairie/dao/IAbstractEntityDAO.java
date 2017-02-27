@@ -9,20 +9,20 @@ import org.demo.formation.librairie.entity.common.IEntity;
  *
  * @param <E> : Type paramétrique representant la classe Métier manipulee
  */
-public interface IAbstractEntityDAO<E extends IEntity> {
+public interface IAbstractEntityDAO<TypeID,E extends IEntity<TypeID>> {
 
 	/**
 	 * Cree ou met à jour une entité
 	 * @param entity : Entité à mettre à jour
 	 * @return
 	 */
-	public E createUpdateEntity(E entity);
+	public TypeID createUpdateEntity(E entity);
 	/**
 	 * Recupere une entité par son identifiant
 	 * @param idEntity : Identifiant technique de l'entité à récuperer
 	 * @return
 	 */
-	public E getEntityById(Long idEntity);
+	public E getEntityById(TypeID idEntity);
 	/**
 	 * Recupère l'ensemble des entités en base
 	 * @return
@@ -32,5 +32,5 @@ public interface IAbstractEntityDAO<E extends IEntity> {
 	 * Supprimer une entité par son identifiant
 	 * @param idToDelete : Identifiant de l'entité à supprimer
 	 */
-	public void deleteById(Long idToDelete); 
+	public void deleteById(TypeID idToDelete); 
 }

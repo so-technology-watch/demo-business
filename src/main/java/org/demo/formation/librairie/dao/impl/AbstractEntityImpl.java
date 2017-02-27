@@ -9,33 +9,31 @@ import org.demo.formation.librairie.dao.IAbstractEntityDAO;
 import org.demo.formation.librairie.entity.common.IEntity;
 import org.demo.formation.librairie.util.PersistenceSingleton;
 
-public class AbstractEntityImpl<E extends IEntity> implements IAbstractEntityDAO<E>{
+public abstract class AbstractEntityImpl<TypeID,E extends IEntity<TypeID>> implements IAbstractEntityDAO<TypeID,E>{
 
 	final Class<E> typeParameterClass;
 
 
 	public AbstractEntityImpl(Class<E> typeParameterClass){
-		this.typeParameterClass = typeParameterClass;
+		this.typeParameterClass = typeParameterClass; 
 	} 
 
-	public E createUpdateEntity(E entity) {
-		if (entity.getEntityId() == null){
-			long nextId = System.nanoTime();
-			entity.setEntityId(nextId);
-		}
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public TypeID createUpdateEntity(E entity) {
+		this.setEntityIdIfNecessary(entity);
 		String entityKey = typeParameterClass.getSimpleName() + entity.getEntityId();
-		HashMap<String, IEntity> mapEntity =  PersistenceSingleton.getInstance().getStoreData();
+		HashMap<String, IEntity<TypeID>> mapEntity =  (HashMap<String, IEntity<TypeID>>) PersistenceSingleton.getInstance().getStoreData();
 		mapEntity.put(entityKey, entity);
 		PersistenceSingleton.getInstance().setStoreData(mapEntity); 
-		return entity;
+		return entity.getEntityId();
 	}
 
-	public E getEntityById(Long idEntity) {
-		HashMap<String, IEntity> mapEntity =  PersistenceSingleton.getInstance().getStoreData();
-		for(Entry<String, IEntity> entry : mapEntity.entrySet()) {
-			String entityKey = typeParameterClass.getSimpleName() + idEntity;
+	@SuppressWarnings("unchecked")
+	public E getEntityById(TypeID idEntity) {
+		HashMap<String, IEntity<TypeID>> mapEntity =  (HashMap<String, IEntity<TypeID>>) PersistenceSingleton.getInstance().getStoreData();
+		for(Entry<String, IEntity<TypeID>> entry : mapEntity.entrySet()) {
+			String entityKey = typeParameterClass.getSimpleName() + idEntity; 
 		    String key = entry.getKey();
-		    @SuppressWarnings("unchecked")
 			E value = (E)entry.getValue();
 		    if (key.equals(entityKey)){
 		    	return value;
@@ -47,21 +45,24 @@ public class AbstractEntityImpl<E extends IEntity> implements IAbstractEntityDAO
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() { 
 		List<E> entityList = new ArrayList<E>();
-		HashMap<String, IEntity> mapEntity = PersistenceSingleton.getInstance().getStoreData();
-		for(Entry<String, IEntity> entry : mapEntity.entrySet()) {
+		HashMap<String, IEntity<TypeID>> mapEntity = (HashMap<String, IEntity<TypeID>>) PersistenceSingleton.getInstance().getStoreData();
+		for(Entry<String, IEntity<TypeID>> entry : mapEntity.entrySet()) {
 		    String key = entry.getKey();
 		    E value = (E)entry.getValue();
 		    if (key.contains(typeParameterClass.getSimpleName())){
 		    	entityList.add(value);
 		    }
 		}
-		return entityList; 
+		return entityList;  
 	}
 
-	public void deleteById(Long idToDelete) {
-		HashMap<String, IEntity> mapEntity = PersistenceSingleton.getInstance().getStoreData();
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void deleteById(TypeID idToDelete) {
+		HashMap<String, IEntity<TypeID>> mapEntity = (HashMap<String, IEntity<TypeID>>) PersistenceSingleton.getInstance().getStoreData();
 		String entityKey = typeParameterClass.getSimpleName() + idToDelete;
 		mapEntity.remove(entityKey);
 		PersistenceSingleton.getInstance().setStoreData(mapEntity); 
 	}
+	
+	public abstract void setEntityIdIfNecessary(E entity);
 }

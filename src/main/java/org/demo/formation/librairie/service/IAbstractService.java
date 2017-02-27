@@ -2,27 +2,34 @@ package org.demo.formation.librairie.service;
 
 import java.util.List;
 
-public interface IAbstractService<E> {
+/**
+ * 
+ * @author chzome
+ *
+ * @param <TypeID> : Type de l'Identifiant à manipuler
+ * @param <View>  : Type de la vue à manipuler
+ */
+public interface IAbstractService<TypeID,View> {
 	/**
 	 * Cree ou met à jour une entité
 	 * @param entity : Entité à mettre à jour
 	 * @return
 	 */
-	public E createUpdateEntity(E entity);
+	public TypeID createUpdateView(View entity);
 	/**
 	 * Recupere une entité par son identifiant
 	 * @param idEntity : Identifiant technique de l'entité à récuperer
 	 * @return
 	 */
-	public E getEntityById(Long idEntity);
+	public View getViewById(TypeID idEntity);
 	/**
 	 * Recupère l'ensemble des entités en base
 	 * @return
 	 */
-	public List<E> findAll();
+	public List<View> findAll();
 	/**
 	 * Supprimer une entité par son identifiant
 	 * @param idToDelete : Identifiant de l'entité à supprimer
 	 */
-	public void deleteById(Long idToDelete); 
+	public void deleteById(TypeID idToDelete); 
 }

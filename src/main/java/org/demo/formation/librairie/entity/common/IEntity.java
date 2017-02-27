@@ -1,7 +1,7 @@
 package org.demo.formation.librairie.entity.common;
 
-public interface IEntity {
+public interface IEntity<E> {
 
-	public Long getEntityId();
-	public void setEntityId(Long id);
+	public E getEntityId();
+	public void setEntityId(E id);
 }
