@@ -18,7 +18,7 @@ public abstract class AbstractEntityImpl<TypeID,E extends IEntity<TypeID>> imple
 		this.typeParameterClass = typeParameterClass; 
 	} 
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked"})
 	public TypeID createUpdateEntity(E entity) {
 		this.setEntityIdIfNecessary(entity);
 		String entityKey = typeParameterClass.getSimpleName() + entity.getEntityId();
@@ -56,7 +56,7 @@ public abstract class AbstractEntityImpl<TypeID,E extends IEntity<TypeID>> imple
 		return entityList;  
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"unchecked" })
 	public void deleteById(TypeID idToDelete) {
 		HashMap<String, IEntity<TypeID>> mapEntity = (HashMap<String, IEntity<TypeID>>) PersistenceSingleton.getInstance().getStoreData();
 		String entityKey = typeParameterClass.getSimpleName() + idToDelete;

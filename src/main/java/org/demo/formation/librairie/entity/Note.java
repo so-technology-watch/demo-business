@@ -17,6 +17,10 @@ public class Note implements Serializable,IEntity<NoteId>{
 	private Date dateExamen;
 	private Integer codeMention;
 	
+	
+	public Note(){		
+	}
+	
 	public Note(NoteId id, Double note,Date dateExamen, Integer codeMention) {
 		super();
 		this.id = id;

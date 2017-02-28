@@ -3,6 +3,8 @@ package org.demo.formation.librairie.service.view;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.demo.formation.librairie.util.MentionEnum;
+
 public class NoteView implements Serializable{
 
 	/**
@@ -15,6 +17,16 @@ public class NoteView implements Serializable{
 	private Date dateExamen;
 	private Integer codeMention;
 	
+	
+	public NoteView(){
+	}
+	
+	public NoteView(Long idC,Long idE,Double noteVal,Date dateExam,Integer codeM){
+		this.idCours = idC;
+		this.idEleve = idE;
+		this.noteObtenue = noteVal;
+		this.codeMention = codeM;
+	}
 	
 	public Long getIdCours() {
 		return idCours;
@@ -45,5 +57,8 @@ public class NoteView implements Serializable{
 	}
 	public void setNoteObtenue(Double noteObtenue) {
 		this.noteObtenue = noteObtenue;
+	}
+	public String getLibMention() {
+		return MentionEnum.getLibByCodeMention(this.codeMention);
 	}
 }

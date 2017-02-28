@@ -17,7 +17,7 @@ public class CoursDAOImpl extends AbstractEntityImpl<Long,Cours> implements ICou
 		List<Cours> liste = this.findAll();
 		if (liste == null || liste.size() == 0){
 		Cours c1 = new Cours(System.nanoTime(), "MATHEMATIQUES", 30);
-		Cours c2 = new Cours(System.nanoTime(), "INFORMATIQUE", 70);
+		Cours c2 = new Cours(0L, "INFORMATIQUE", 70);
 		Cours c3 = new Cours(System.nanoTime(), "PHILOSOPHIE", 25);
 		Cours c4 = new Cours(System.nanoTime(), "ANGLAIS", 35);
 		Cours c5 = new Cours(System.nanoTime(), "COMMUNICATION", 60);

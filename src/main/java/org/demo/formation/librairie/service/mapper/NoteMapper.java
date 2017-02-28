@@ -22,8 +22,8 @@ public class NoteMapper extends AbstractCommonMapper<NoteView,Note> implements I
 				map().setDateExamen(source.getDateExamen());
 				map().setNoteObtenue(source.getNoteObtenue());
 				NoteId noteId = new NoteId(source.getIdCours(),source.getIdEleve());
-				map().setId(noteId);
 				map().setEntityId(noteId);
+				map().setId(noteId);
 			} 
 		}); 
 		this.mapperFromEntity = new ModelMapper();
@@ -42,9 +42,11 @@ public class NoteMapper extends AbstractCommonMapper<NoteView,Note> implements I
 	public NoteView mapViewFromEntity(Note ent) {
 		return this.mapperFromEntity.map(ent,NoteView.class);
 	}
-
+	
 	public Note mapEntityFromView(NoteView view) {
-		return this.mapperFromView.map(view, Note.class);
+		NoteId noteId = new NoteId(view.getIdCours(),view.getIdEleve());
+		Note note = new Note(noteId,view.getNoteObtenue(),view.getDateExamen(),view.getCodeMention());
+		return note;
 	}
 
 	@Override

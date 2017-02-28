@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import org.demo.formation.librairie.entity.common.IEntity;
-import org.demo.formation.librairie.util.DepartementEnum;
 
 
 public class Eleve implements Serializable,IEntity<Long> {

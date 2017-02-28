@@ -6,12 +6,6 @@ import org.demo.formation.librairie.entity.common.IEntity;
 
 public class Cours implements Serializable,IEntity<Long> {
 
-	public Cours(Long idCours, String libelle, Integer nbHeures) {
-		super();
-		this.idCours = idCours;
-		this.libelle = libelle;
-		this.nbHeures = nbHeures;
-	}
 	/**
 	 * 
 	 */
@@ -22,6 +16,16 @@ public class Cours implements Serializable,IEntity<Long> {
 	private Long idCours;
 	private String libelle;
 	private Integer nbHeures;
+	
+	public Cours(){
+			}
+	
+	public Cours(Long idCours, String libelle, Integer nbHeures) {
+		super();
+		this.idCours = idCours;
+		this.libelle = libelle;
+		this.nbHeures = nbHeures;
+	}
 	
 	public Long getIdCours() {
 		return idCours;
