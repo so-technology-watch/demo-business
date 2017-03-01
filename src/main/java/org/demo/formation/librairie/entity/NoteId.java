@@ -37,8 +37,8 @@ public class NoteId implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((coursConcerne == null) ? 0 : coursConcerne.getIdCours().hashCode());
-		result = prime * result + ((eleveConcerne == null) ? 0 : eleveConcerne.getIdEleve().hashCode());
+		result = prime * result + ((coursConcerne == null) ? 0 : coursConcerne.getIdCours() == null ?0 : coursConcerne.getIdCours().hashCode());
+		result = prime * result + ((eleveConcerne == null) ? 0 : eleveConcerne.getIdEleve()  == null ? 0 :  eleveConcerne.getIdEleve().hashCode());
 		return result;
 	}
 	@Override

@@ -11,7 +11,7 @@ public abstract class AbstractServiceImpl<TypeID,E extends IEntity<TypeID>,ViewT
 
 	private IDAO myDAO = null;
 	private IDemoMapper<ViewType, E> mapper = null;
-	
+
 	public TypeID createUpdateView(ViewType view) {
 		// TODO Auto-generated method stub
 		E entity = mapper.mapEntityFromView(view);
@@ -21,8 +21,11 @@ public abstract class AbstractServiceImpl<TypeID,E extends IEntity<TypeID>,ViewT
 	public ViewType getViewById(TypeID idEntity) {
 		// TODO Auto-generated method stub
 		E entity = this.myDAO.getEntityById(idEntity);
-		ViewType view = this.mapper.mapViewFromEntity(entity);
-		return view;
+		if (entity != null){
+			ViewType view = this.mapper.mapViewFromEntity(entity);
+			return view;
+		}
+		return null;
 	}
 
 	public List<ViewType> findAll() {

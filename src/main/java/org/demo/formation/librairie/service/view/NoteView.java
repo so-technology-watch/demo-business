@@ -24,6 +24,7 @@ public class NoteView implements Serializable{
 	public NoteView(Long idC,Long idE,Double noteVal,Date dateExam,Integer codeM){
 		this.idCours = idC;
 		this.idEleve = idE;
+		this.dateExamen = dateExam;
 		this.noteObtenue = noteVal;
 		this.codeMention = codeM;
 	}
